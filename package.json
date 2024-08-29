@@ -1,0 +1,21 @@
+{
+  "name": "training_ts",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "start:backend": "cd backend && npx ts-node src/index.ts",
+    "start:frontend": "cd frontend && npm start",
+    "start:all": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "cross-env": "^7.0.3"
+  },
+  "dependencies": {
+    "mysql2": "^3.11.0"
+  }
+}
