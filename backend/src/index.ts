@@ -26,8 +26,7 @@ connection.connect((err) => {
     dbConnectionStatus = 'Error connecting to MySQL';
     return;
   }
-  console.log('Connected to MySQL');
-  dbConnectionStatus = 'Connected to MySQL';
+  dbConnectionStatus = 'MySQL接続';
 });
 
 app.get('/', (req, res) => {

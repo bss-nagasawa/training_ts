@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 const App: React.FC = () => {
-  const [dbStatus, setDbStatus] = useState<string>('Checking...');
+  const [dbStatus, setDbStatus] = useState<string>('Not connected');
 
   useEffect(() => {
-    axios.get('http://localhost:3000/db-status')
-      .then(response => {
-        setDbStatus(response.data.status);
-      })
-      .catch(error => {
-        console.error('Error fetching DB status:', error);
-        setDbStatus('Error fetching DB status');
-      });
+    const interval = setInterval(() => {
+      fetch('http://localhost:3000/db-status')
+        .then(response => response.json())
+        .then(data => setDbStatus(data.status))
+        .catch(error => console.error('Error fetching DB status:', error));
+    }, 5000); // 5秒ごとにポーリング
+
+    return () => clearInterval(interval); // コンポーネントがアンマウントされたときにポーリングを停止
   }, []);
 
   return (
     <div>
-      <h1>Hello World!</h1>
-      <p>DB接続ステータス: {dbStatus}</p>
+      <h1>DB接続状況: {dbStatus}</h1>
     </div>
   );
 };
