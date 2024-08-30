@@ -2,12 +2,12 @@
 
 ## バックエンド
 
-cd backend
+cd backend  
 npm run dev
 
 ## フロントエンド
 
-cd frontend
+cd frontend  
 npm start
 
 # git コマンド
